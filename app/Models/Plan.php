@@ -21,4 +21,5 @@ class Plan extends Model
     {
         return 'slug';
     }
+
 }

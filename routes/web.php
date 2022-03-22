@@ -29,14 +29,50 @@ Route::get('/admin', [
 
 
 //Auth Route Group
-Route::middleware(['auth'])->group(function () {
+// Route::middleware(['auth'])->group(function () {
 
-	Route::get('/my_subscription', [
-		'as' => 'my_subscription',
-		'uses' => 'App\Http\Controllers\UserSubscription@show'
+// 	Route::get('/my_subscription', [
+// 		'as' => 'my_subscription',
+// 		'uses' => 'App\Http\Controllers\UserSubscription@show'
+// 	]);
+
+// });
+
+
+Route::group(['middleware' => 'auth'], function() {
+
+    Route::get('/plans', [
+		'as' => 'plans.index',
+		'uses' => 'App\Http\Controllers\PlanController@index'
 	]);
 
+	Route::get('/plan/{plan}', [
+		'as' => 'plans.show',
+		'uses' => 'App\Http\Controllers\PlanController@show'
+	]);
+
+	Route::post('/subscription', [
+		'as' => 'subscription.create',
+		'uses' => 'App\Http\Controllers\SubscriptionController@create'
+	]);
+
+
+    //Routes for create Plan
+    Route::get('create/plan', [
+		'as' => 'create.plan',
+		'uses' => 'App\Http\Controllers\SubscriptionController@createPlan'
+	]);
+
+    Route::post('store/plan', [
+		'as' => 'store.plan',
+		'uses' => 'App\Http\Controllers\SubscriptionController@storePlan'
+	]);
+
+
 });
+
+
+
 
 
 //Admin Route Group
