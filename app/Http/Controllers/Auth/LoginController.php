@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
+use Auth;
 
 class LoginController extends Controller
 {
@@ -37,4 +39,35 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
+
+    //Overriding the Login Method to logIn Active Users Only
+    public function login(Request $request)
+    {
+        $this->validate($request, [
+            'email'           => 'required|max:255|email',
+            'password'           => 'required',
+        ]);
+
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+            
+            //Check if user is not suspended by admin
+            if(Auth::user()->status == false){
+                Auth::logout();
+                return redirect()->route('suspended_account');
+            }else{
+                return redirect()->intended();
+            }
+            
+        }else {
+
+            return redirect()->back();
+
+        }
+
+    }
+
+
+
+
 }

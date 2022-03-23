@@ -13,14 +13,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
 Route::get('/', [
 	'as' => 'home',
 	'uses' => 'App\Http\Controllers\HomeController@index'
+]);
+
+Route::get('/suspended_account', [
+	'as' => 'suspended_account',
+	'uses' => 'App\Http\Controllers\HomeController@suspendedAccount'
 ]);
 
 Route::middleware(['auth'])->group(function () {
@@ -40,43 +40,49 @@ Route::middleware(['auth'])->group(function () {
 		'uses' => 'App\Http\Controllers\SubscriptionController@create'
 	]);
 
-
 });
 
 
 //Admin Route Group
 Route::middleware(['auth', 'admin'])->group(function () {
 
+	//Admin Dashboard Route
 	Route::get('/admin', [
 		'as' => 'admin_dashboard',
 		'uses' => 'App\Http\Controllers\AdminController@dashboard'
 	]);
 
+	//Admin Search Users Route
 	Route::get('/admin/search_users', [
 		'as' => 'admin_search_users',
 		'uses' => 'App\Http\Controllers\AdminController@searchUsers'
 	]);
 
+	//Admin Edit User Route
 	Route::get('/admin/edit_user/{user_id}', [
 		'as' => 'admin_edit_user',
 		'uses' => 'App\Http\Controllers\AdminController@editUser'
 	]);
 
+	//Admin Update User Route
 	Route::put('/admin/update_user/{user_id}', [
 		'as' => 'admin_update_user',
 		'uses' => 'App\Http\Controllers\AdminController@updateUser'
 	]);
 
+	//Admin Deactivate User Route
 	Route::put('/admin/deactivate_user/{user_id}', [
 		'as' => 'admin_deactivate_user',
 		'uses' => 'App\Http\Controllers\AdminController@deactivateUser'
 	]);
 
+	//Admin Activate User Route
 	Route::put('/admin/activate_user/{user_id}', [
 		'as' => 'admin_activate_user',
 		'uses' => 'App\Http\Controllers\AdminController@activateUser'
 	]);
 
+	//Admin Destroy User Route
 	Route::delete('/admin/delete_user/{user_id}', [
 		'as' => 'admin_delete_user',
 		'uses' => 'App\Http\Controllers\AdminController@destroyUser'

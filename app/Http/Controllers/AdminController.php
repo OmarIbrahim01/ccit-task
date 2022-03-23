@@ -7,16 +7,14 @@ use App\Models\User;
 
 class AdminController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
+
     public function dashboard()
     {
         $users = User::all();
         return view('admin.dashboard', ['users' => $users]);
     }
+
 
     public function searchUsers(Request $request)
     {
@@ -32,6 +30,7 @@ class AdminController extends Controller
     }
 
 
+
     public function deactivateUser($id)
     {
         $user = User::findOrFail($id);
@@ -41,6 +40,8 @@ class AdminController extends Controller
         session()->flash('message', 'User Have Been Deactivated Successfully');
         return redirect()->back();
     }
+
+
 
     public function activateUser($id)
     {
@@ -52,57 +53,16 @@ class AdminController extends Controller
         return redirect()->back();
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function editUser($id)
     {
         $user = User::findOrFail($id);
         return view('admin.edit_user', ['user' => $user]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
+    
     public function updateUser(Request $request, $id)
     {
         $request->validate([
@@ -117,15 +77,10 @@ class AdminController extends Controller
 
         session()->flash('message', 'User Have Been Updated Successfully');
         return redirect()->route('admin_dashboard');
-
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
+
     public function destroyUser($id)
     {
         $user = User::findOrFail($id);

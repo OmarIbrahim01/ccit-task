@@ -35,6 +35,7 @@
                     </div>
                 </form>
             </div>
+            <p style="color: darkred; font-weight: bold; margin-top: 20px;">Unfortunately i Could not get this form to post with STRIP-API Correctly</p>
         </div>
     </div>
 </div>
