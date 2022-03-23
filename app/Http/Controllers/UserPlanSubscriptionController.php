@@ -33,5 +33,12 @@ class UserPlanSubscriptionController extends Controller
     }
 
 
+
+    public function show()
+    {
+        return view('my_subscription');
+    }
+
+
  
 }
