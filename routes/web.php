@@ -41,9 +41,14 @@ Route::middleware(['auth'])->group(function () {
 		'uses' => 'App\Http\Controllers\PlanController@show'
 	]);
 
+	Route::get('/my_subscription', [
+		'as' => 'subscription.show',
+		'uses' => 'App\Http\Controllers\UserPlanSubscriptionController@show'
+	]);
+
 	Route::post('/subscription', [
-		'as' => 'subscription.create',
-		'uses' => 'App\Http\Controllers\SubscriptionController@create'
+		'as' => 'subscription.store',
+		'uses' => 'App\Http\Controllers\UserPlanSubscriptionController@store'
 	]);
 
 });

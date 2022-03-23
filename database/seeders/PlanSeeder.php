@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use DB;
 
 class PlanSeeder extends Seeder
 {
@@ -16,7 +17,7 @@ class PlanSeeder extends Seeder
         //Create Monthly Plan
         DB::table('plans')->insert([
             'name' => 'Monthly',
-            'slug ' => 'monthly',
+            'slug' => 'monthly',
             'stripe_plan' => 'Monthly',
             'stripe_id' => 'prod_C7nJSSXVMMIbvq',
             'cost' => '9.00',
@@ -26,7 +27,7 @@ class PlanSeeder extends Seeder
         //Create Yearly Plan
         DB::table('plans')->insert([
             'name' => 'Yearly',
-            'slug ' => 'yearly',
+            'slug' => 'yearly',
             'stripe_plan' => 'Yearly',
             'stripe_id' => 'prod_C7nLs1v60FCTE7',
             'cost' => '99.00',

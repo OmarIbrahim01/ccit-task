@@ -22,4 +22,9 @@ class Plan extends Model
         return 'slug';
     }
 
+    public function userPlanSubscription()
+    {
+        return $this->hasMany('App\Models\UserPlanSubscription');
+    }
+
 }

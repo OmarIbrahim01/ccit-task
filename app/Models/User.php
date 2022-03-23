@@ -45,9 +45,13 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function subscriptionPlans()
+    public function planSubscription()
     {
-        return $this->hasMany('App\Models\UserSubscriptionPlan');
+        return $this->hasMany('App\Models\UserPlanSubscription');
     }
 
+    public function role()
+    {
+        return $this->belongsTo('App\Models\Role');
+    }
 }

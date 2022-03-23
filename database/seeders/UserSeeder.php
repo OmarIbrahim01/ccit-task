@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use DB;
+use Hash;
 
 class UserSeeder extends Seeder
 {
@@ -27,6 +29,15 @@ class UserSeeder extends Seeder
             'name' => 'User',
             'email' => 'user@user.com',
             'password' => Hash::make('user@123'),
+            'role_id' => 2,
+            'status' => 1,
+        ]);
+
+        //Create Normal User
+        DB::table('users')->insert([
+            'name' => 'User1',
+            'email' => 'user1@user.com',
+            'password' => Hash::make('user1@123'),
             'role_id' => 2,
             'status' => 1,
         ]);

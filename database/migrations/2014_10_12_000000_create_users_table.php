@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration
             $table->integer('role_id')->default(2);
             $table->boolean('status')->default(true);
             $table->timestamps();
+            $table->timestamp('deleted_at')->nullable();
         });
     }
 
