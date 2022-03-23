@@ -14,19 +14,13 @@
     </div>
 @endif
 
-<!-- Header-->
-<header class="bg-primary bg-gradient text-white">
-    <div class="container px-4 text-center" style="padding-top: 200px; padding-bottom: 200px;">
-        <h1 class="fw-bolder">Welcome to CCIT Task</h1>
-        <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus in libero eget est mattis finibus.</p>
-    </div>
-</header>
+
 <!-- About section-->
-<section id="about" style="padding-top: 80px; padding-bottom: 80px;">
+<section id="about" style="padding-top: 80px; padding-bottom: 200px;">
     <div class="container px-4">
         <div class="row gx-4 justify-content-center">
             <div class="col-lg-8">
-                <h2>About this page</h2>
+                <h2>Landing Page</h2>
                 <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus in libero eget est mattis finibus. Phasellus sed dignissim est, non molestie libero. Vivamus id scelerisque risus. Maecenas viverra elit sit amet laoreet tincidunt. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos:</p>
                 <ul>
                     <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus</li>

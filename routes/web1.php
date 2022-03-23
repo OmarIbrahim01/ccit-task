@@ -14,14 +14,43 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
 
-Route::get('/', [
+
+
+
+
+Route::get('/home', [
 	'as' => 'home',
 	'uses' => 'App\Http\Controllers\HomeController@index'
 ]);
+
+
+
+Route::group(['prefix' => '/'], function()
+{
+    if (Auth::check())
+    {
+        Route::get('/', function () {
+		    return redirect()->route('plans.index');
+		});
+    } else{
+        Route::get('/', function () {
+		    return redirect()->route('home');
+		});
+    }
+});
+
+
+//Auth Route Group
+Route::middleware(['auth'])->group(function () {
+
+	Route::get('/my_subscription', [
+		'as' => 'my_subscription',
+		'uses' => 'App\Http\Controllers\UserSubscription@show'
+	]);
+
+});
+
 
 Route::middleware(['auth'])->group(function () {
 
@@ -41,6 +70,18 @@ Route::middleware(['auth'])->group(function () {
 	]);
 
 
+    //Routes for create Plan
+    Route::get('create/plan', [
+		'as' => 'create.plan',
+		'uses' => 'App\Http\Controllers\SubscriptionController@createPlan'
+	]);
+
+    Route::post('store/plan', [
+		'as' => 'store.plan',
+		'uses' => 'App\Http\Controllers\SubscriptionController@storePlan'
+	]);
+
+
 });
 
 
@@ -52,37 +93,8 @@ Route::middleware(['auth', 'admin'])->group(function () {
 		'uses' => 'App\Http\Controllers\AdminController@dashboard'
 	]);
 
-	Route::get('/admin/search_users', [
-		'as' => 'admin_search_users',
-		'uses' => 'App\Http\Controllers\AdminController@searchUsers'
-	]);
-
-	Route::get('/admin/edit_user/{user_id}', [
-		'as' => 'admin_edit_user',
-		'uses' => 'App\Http\Controllers\AdminController@editUser'
-	]);
-
-	Route::put('/admin/update_user/{user_id}', [
-		'as' => 'admin_update_user',
-		'uses' => 'App\Http\Controllers\AdminController@updateUser'
-	]);
-
-	Route::put('/admin/deactivate_user/{user_id}', [
-		'as' => 'admin_deactivate_user',
-		'uses' => 'App\Http\Controllers\AdminController@deactivateUser'
-	]);
-
-	Route::put('/admin/activate_user/{user_id}', [
-		'as' => 'admin_activate_user',
-		'uses' => 'App\Http\Controllers\AdminController@activateUser'
-	]);
-
-	Route::delete('/admin/delete_user/{user_id}', [
-		'as' => 'admin_delete_user',
-		'uses' => 'App\Http\Controllers\AdminController@destroyUser'
-	]);
-
 });
+
 
 Auth::routes();
 

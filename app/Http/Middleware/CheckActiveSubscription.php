@@ -16,6 +16,11 @@ class CheckActiveSubscription
      */
     public function handle(Request $request, Closure $next)
     {
-        return $next($request);
+        if (Auth::user()) {
+            
+            return $next($request);
+        }
+
+        return redirect()->route('home');
     }
 }

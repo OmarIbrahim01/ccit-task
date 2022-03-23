@@ -1,8 +1,9 @@
 @extends('layouts.app')
 @section('content')
-<div class="container">
+<div class="container" style="padding-top: 100px; padding-bottom: 100px;">
     <div class="row justify-content-center">
         <div class="col-md-12">
+            <h2>Please Select a Subscription Plan</h2>
             <div class="card">
                 <div class="card-header">Plans</div>
                 <div class="card-body">

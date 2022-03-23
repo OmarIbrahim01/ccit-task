@@ -3,6 +3,7 @@
 <div class="container" style="padding-top: 200px; padding-bottom: 200px;">
     <div class="row justify-content-center">
         <div class="col-md-12">
+            <h2>Please Provide Your Cridit Card Information</h2>
             <div class="">
                 <p>You will be charged ${{ number_format($plan->cost, 2) }} for {{ $plan->name }} Plan</p>
             </div>

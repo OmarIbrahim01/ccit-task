@@ -14,7 +14,7 @@
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
             <div class="container px-4">
-                <a class="navbar-brand" href="#page-top">Start Bootstrap</a>
+                <a class="navbar-brand" href="/">Start Bootstrap</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     @guest
@@ -36,6 +36,13 @@
             </div>
         </nav>
 
+        <!-- Header-->
+        <header class="bg-primary bg-gradient text-white">
+            <div class="container px-4 text-center" style="padding-top: 100px; padding-bottom: 100px;">
+                <h1 class="fw-bolder">CCIT Task</h1>
+                <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus in libero eget est mattis finibus.</p>
+            </div>
+        </header>
 
         @yield('content')
 

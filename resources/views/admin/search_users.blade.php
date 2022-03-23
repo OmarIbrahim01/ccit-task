@@ -65,9 +65,9 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">Admin Dashboard</h1>
+                        <h1 class="mt-4">Results For "{{ $searchTerm }}"</h1>
                         <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item active">All Users</li>
+                            <li class="breadcrumb-item active">users with name or email like "{{ $searchTerm }}"</li>
                         </ol>
 
 

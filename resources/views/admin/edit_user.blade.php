@@ -65,9 +65,9 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">Admin Dashboard</h1>
+                        <h1 class="mt-4">Edit User</h1>
                         <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item active">All Users</li>
+                            <li class="breadcrumb-item active">Edit User</li>
                         </ol>
 
 
@@ -89,81 +89,31 @@
                             </div>
                         @endif
                        
-                        <div class="card mb-4">
-                            <div class="card-header">
-                                <i class="fas fa-table me-1"></i>
-                                Users
-                            </div>
-                            <div class="card-body">
-                                <table id="datatablesSimple">
-                                    <thead>
-                                        <tr>
-                                            <th class="text-center">Name</th>
-                                            <th class="text-center">Email</th>
-                                            <th class="text-center">Type</th>
-                                            <th class="text-center">Account Status</th>
-                                            <th class="text-center">Actions</th>
-                                        </tr>
-                                    </thead>
-                                    
-                                    <tbody>
-
-                                        @foreach($users as $user)
-                                        <tr>
-                                            <td class="text-center">{{ $user->name }}</td>
-                                            <td class="text-center">{{ $user->email }}</td>
-                                            <td class="text-center"> 
-                                                @if($user->role_id == 1)
-                                                    <p>Admin</p>
-                                                @elseif($user->role_id == 2)
-                                                    <p>User</p>
-                                                @endif
-                                            </td>
-                                            <td class="text-center">
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        @if($user->status == true)
-                                                            <p style="color: darkgreen;">Active</p>
-                                                        @elseif($user->status == false)
-                                                            <p style="color: darkred;">Deactivated</p>
-                                                        @endif
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        @if($user->status == true)
-                                                            <a class="btn btn-sm btn-warning" href="#" onclick="event.preventDefault(); document.getElementById('deactivate_user_{{ $user->id }}_form').submit();">Deactivate Account</a>
-                                                            <form id="deactivate_user_{{ $user->id }}_form" action="{{ route('admin_deactivate_user', [$user->id]) }}" method="POST" class="d-none">
-                                                                @csrf
-                                                                @method('PUT')
-                                                            </form>
-                                                        @elseif($user->status == false)
-                                                            <a class="btn btn-sm btn-success" href="#" onclick="event.preventDefault(); document.getElementById('activate_user_{{ $user->id }}_form').submit();">Activate Account</a>
-                                                            <form id="activate_user_{{ $user->id }}_form" action="{{ route('admin_activate_user', [$user->id]) }}" method="POST" class="d-none">
-                                                                @csrf
-                                                                @method('PUT')
-                                                            </form>
-                                                        @endif
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td class="text-center">
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        <a class="btn btn-primary" href="{{ route('admin_edit_user', [$user->id]) }}">Edit User</a>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <a class="btn btn-danger" href="#" onclick="event.preventDefault(); document.getElementById('delete_user_{{ $user->id }}_form').submit();">Delete User</a>
-                                                        <form id="delete_user_{{ $user->id }}_form" action="{{ route('admin_delete_user', [$user->id]) }}" method="POST" class="d-none">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                        </form>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        @endforeach
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-5">
+                                    <div class="card shadow-lg border-0 rounded-lg mt-5">
                                         
-                                    </tbody>
-                                </table>
+                                        <div class="card-body">
+                                            <form action="{{ route('admin_update_user', [$user->id]) }}" method="POST">
+                                                @csrf
+                                                @method('PUT')
+                                                <div class="form-floating mb-3">
+                                                    <input class="form-control" id="name" name="name" type="text" placeholder="" value="{{ $user->name }}" />
+                                                    <label for="inputEmail">Name</label>
+                                                </div>
+                                                <div class="form-floating mb-3">
+                                                    <input class="form-control" id="inputEmail" type="email" name="email" placeholder="" value="{{ $user->email }}" />
+                                                    <label for="inputEmail">Email address</label>
+                                                </div>
+                                                
+                                                <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
+                                                    <button class="btn btn-primary" type="submit">Update</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
