@@ -70,6 +70,9 @@
                                                     </button>
                                                 </div>
                                             </div>
+                                            <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
+                                                <a href="/sign-in/github" class="btn btn-secondary" style="width: 100%;">Login With Github</a>
+                                            </div>
                                         </form>
                                     </div>
                                     <div class="card-footer text-center py-3">

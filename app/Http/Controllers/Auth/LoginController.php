@@ -7,6 +7,10 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Auth;
+use Hash;
+use Socialite;
+use Str;
+use App\Model\User;
 
 class LoginController extends Controller
 {
@@ -39,6 +43,46 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
+
+
+    public function github(){
+
+        // send the user request to github
+        return Socialite::driver('github')->redirect();
+
+    }
+
+    public function githubRedirect(){
+
+        // get oauth request back from github to authinticate user
+        $user = Socialite::driver('github')->user();
+
+        // check if user email exists if not then create user and log them in
+        $user = User::firstOrCreat([
+            'email' => $user->email
+        ], [
+            'name' => $user->name,
+            'password' => Hash::make(Str::random(24))
+        ]);
+
+        Auth::login($user, true);
+
+        // check if user is not suspended by admin
+        if(Auth::user()->status == false){
+            Auth::logout();
+            return redirect()->route('suspended_account');
+        }else{
+            return redirect()->route('home');
+        }
+
+        
+    }
+
+
+
+
+
 
 
     //Overriding the Login Method to logIn Active Users Only

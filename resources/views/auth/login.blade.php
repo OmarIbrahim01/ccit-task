@@ -46,9 +46,12 @@
                                             </div>
                                             <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
                                                 {{-- <a class="small" href="password.html">Forgot Password?</a> --}}
-                                                <button type="submit" class="btn btn-primary">
+                                                <button type="submit" class="btn btn-primary" style="width: 100%;">
                                                     {{ __('Login') }}
                                                 </button>
+                                            </div>
+                                            <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
+                                                <a href="/sign-in/github" class="btn btn-secondary" style="width: 100%;">Login With Github</a>
                                             </div>
                                         </form>
                                     </div>

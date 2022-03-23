@@ -18,6 +18,12 @@ Route::get('/', [
 	'uses' => 'App\Http\Controllers\HomeController@index'
 ]);
 
+
+//Login With Github Routes
+Route::get('/sign-in/github', 'App\Http\Controllers\Auth\LoginController@github');
+Route::get('/sign-in/github/redirect', 'App\Http\Controllers\Auth\LoginController@githubRedirect');
+
+// Suspended account error page
 Route::get('/suspended_account', [
 	'as' => 'suspended_account',
 	'uses' => 'App\Http\Controllers\HomeController@suspendedAccount'
